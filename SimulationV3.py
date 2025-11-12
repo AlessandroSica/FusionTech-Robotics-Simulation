@@ -21,11 +21,15 @@ def icosahedron_vertices():
     ]
 
 def _dist(a, b): return ((a[0]-b[0])**2 + (a[1]-b[1])**2 + (a[2]-b[2])**2) ** 0.5
+# ecluidean distance between 2 points in 3D
+
 def _normalize(v):
+# Turns a 3D vector into a unit vector pointing the same way
     n = (v[0]**2 + v[1]**2 + v[2]**2) ** 0.5
     return (v[0]/n, v[1]/n, v[2]/n)
 
 def icosahedron_edges(verts):
+# Finds which vertex pairs are edges by detecting the smallest nonzero pairwise distance and returning all pairs at that distance.
     n=len(verts); dmin=None; dists={}
     for i in range(n):
         for j in range(i+1,n):
@@ -34,7 +38,8 @@ def icosahedron_edges(verts):
     eps=dmin*1e-6
     return [(i,j) for (i,j),d in dists.items() if abs(d-dmin)<=eps]
 
-def truncated_icosahedron_vertex_dirs(tau: float = 1.0/3.0):
+def truncated_icosahedron_vertex_dirs(tau):
+# Generates unit direction vectors to the 60 truncated-icosahedron corner locations by sampling points along every icosahedron edge at a fraction tau from each end normalizing.
     base=icosahedron_vertices(); edges=icosahedron_edges(base)
     dirs=[]; seen=set()
     def _add(v):
@@ -188,7 +193,7 @@ def main():
     hex_length = args.hex_length
     sphere_lats, sphere_lons = 256, 512
     center = [0.0, 0.0, 3.5]
-    tau = 1.0 / 3.0
+    tau = 1.0 / 3
 
     support_radius = 0.22
     support_segments = 36
