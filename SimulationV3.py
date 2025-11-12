@@ -1,4 +1,3 @@
-# file: build_truncated_icosa_sphere_rect_boxes.py
 import math
 import os
 import time

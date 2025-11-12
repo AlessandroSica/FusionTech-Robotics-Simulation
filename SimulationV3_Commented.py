@@ -1,4 +1,3 @@
-# file: build_truncated_icosa_sphere_rect_boxes.py
 """
 Scene builder for a truncated-icosahedron based structure on a sphere, plus supports and a loaded OBJ arm.
 
